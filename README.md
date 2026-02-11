@@ -1,65 +1,65 @@
-# Tabak Store - متجر المنتجات التقليدية
+# ALOMDA - Professional Jewelry Tools Store
 
-متجر إلكتروني متكامل مبني باستخدام Laravel لبيع المنتجات المحلية التقليدية.
+A complete e-commerce platform built with Laravel for selling professional jewelry tools and equipment.
 
-## المميزات
-- **لوحة تحكم المشرف**: إدارة كاملة للمنتجات والطلبات.
-- **واجهة المستخدم**: عرض جذاب للمنتجات، دعم اللغتين (العربية والإنجليزية).
-- **نظام الطلبات**: طلب مباشر عبر الموقع أو عبر واتساب.
-- **التصميم**: متجاوب بالكامل باستخدام Tailwind CSS.
+## Features
+- **Admin Dashboard**: Complete management of products, categories, and orders
+- **User Interface**: Attractive product display with bilingual support (Arabic and English)
+- **Order System**: Direct ordering through the website
+- **Design**: Fully responsive using Tailwind CSS
 
-## متطلبات التشغيل
-- PHP >= 8.1
+## Requirements
+- PHP >= 8.2
 - Composer
 - Node.js & NPM
-- قاعدة بيانات MySQL (أو SQLite للتجربة السريعة)
+- MySQL database (or SQLite for quick testing)
 
-## خطوات التركيب والتشغيل
+## Installation Steps
 
-1. **نسخ المشروع وتثبيت الحزم:**
+1. **Clone the project and install dependencies:**
    ```bash
    composer install
    npm install
    ```
 
-2. **إعداد البيئة:**
-   قم بنسخ ملف `.env.example` إلى `.env` وقم بإعداد بيانات قاعدة البيانات.
+2. **Environment Setup:**
+   Copy `.env.example` to `.env` and configure database settings.
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
-   *ملاحظة: المشروع مهيأ حالياً للعمل على SQLite لسهولة التجربة. للتحويل إلى MySQL، قم بتعديل `DB_CONNECTION` في ملف `.env`.*
+   *Note: The project is currently configured to work with SQLite for easy testing. To switch to MySQL, modify `DB_CONNECTION` in the `.env` file.*
 
-3. **بناء قاعدة البيانات:**
+3. **Build the database:**
    ```bash
    php artisan migrate --seed
    ```
-   سيقوم هذا الأمر بإنشاء الجداول وإضافة:
-   - مستخدم مشرف (Email: `admin@tabak.com`, Password: `password`)
-   - منتجات وتصنيفات تجريبية.
+   This will create tables and add:
+   - Admin user (Email: `admin@alomda.com`, Password: `password`)
+   - Sample products and categories.
 
-4. **تشغيل الأصول (Frontend):**
+4. **Build Frontend Assets:**
    ```bash
    npm run build
    ```
 
-5. **تشغيل الخادم المحلي:**
+5. **Run Local Server:**
    ```bash
    php artisan serve
    ```
-   يمكنك الآن زيارة الموقع على: `http://localhost:8000`
+   You can now visit the site at: `http://localhost:8000`
 
-## لوحة التحكم
-للدخول إلى لوحة التحكم، اذهب إلى: `http://localhost:8000/admin`
-- **البريد الإلكتروني:** admin@tabak.com
-- **كلمة المرور:** password
+## Admin Panel
+To access the admin panel, go to: `http://localhost:8000/admin`
+- **Email:** admin@alomda.com
+- **Password:** password
 
-## هيكل قاعدة البيانات
-- **users**: جدول المستخدمين والمشرفين.
-- **categories**: تصنيفات المنتجات (الاسم عربي/انجليزي).
-- **products**: المنتجات (الأسماء، الوصف، السعر، الصور).
-- **orders**: طلبات العملاء.
-- **order_items**: المنتجات داخل كل طلب.
+## Database Structure
+- **users**: Users and administrators table
+- **categories**: Product categories (name in Arabic/English)
+- **products**: Products (names, description, price, images)
+- **orders**: Customer orders
+- **order_items**: Products within each order
 
-## الدعم
-لأي استفسارات، يرجى التواصل مع فريق التطوير.
+## Support
+For any inquiries, please contact the development team.

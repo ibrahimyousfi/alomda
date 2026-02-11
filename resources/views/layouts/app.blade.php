@@ -32,7 +32,13 @@
                 <div class="flex items-center">
                     <div class="shrink-0 flex items-center">
                         <a href="{{ route('home') }}" class="flex items-center gap-2">
-                            <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-14 w-auto">
+                            @if(file_exists(public_path('build/assets/Logo.png')))
+                                <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-14 w-auto">
+                            @elseif(file_exists(public_path('images/Logo.png')))
+                                <img src="{{ asset('images/Logo.png') }}" alt="ALOMDA" class="h-14 w-auto">
+                            @else
+                                <span class="text-2xl font-bold text-gray-900">ALOMDA</span>
+                            @endif
                         </a>
                     </div>
                     <div class="hidden md:flex md:items-center md:gap-8 mx-10">
@@ -151,7 +157,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 text-center md:text-start">
                 <div class="col-span-1 md:col-span-1">
-                    <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-12 w-auto mb-4 mx-auto md:mx-0">
+                    @if(file_exists(public_path('build/assets/Logo.png')))
+                        <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-12 w-auto mb-4 mx-auto md:mx-0">
+                    @elseif(file_exists(public_path('images/Logo.png')))
+                        <img src="{{ asset('images/Logo.png') }}" alt="ALOMDA" class="h-12 w-auto mb-4 mx-auto md:mx-0">
+                    @else
+                        <h2 class="text-2xl font-bold text-white mb-4">ALOMDA</h2>
+                    @endif
                     <p class="text-gray-400 text-sm leading-relaxed">
                         ALOMDA is a specialized supplier of professional tools and equipment for jewelers and artisans, offering reliable, precise, and durable solutions for high-quality work.
                     </p>

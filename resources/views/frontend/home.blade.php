@@ -15,7 +15,7 @@
         ></iframe>
     </div>
     
-    <!-- Dark Overlay (ضباب غامق) -->
+    <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-black/70 z-10"></div>
     
     <!-- Content -->
@@ -28,7 +28,6 @@
                         ✨ Professional Tools & Equipment
                     </div>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                        ALOMDA <br>
                         <span class="text-gold-500">Professional Jewelry Tools</span>
                     </h1>
                     <p class="text-lg text-gray-200 max-w-lg mx-auto md:mx-0">
@@ -102,7 +101,7 @@
                     <!-- Placeholder if no images -->
                     <div class="w-full md:w-1/2 relative hidden md:block">
                         <div class="relative w-full h-[400px] md:h-[500px] flex items-center justify-center bg-white/5 rounded-xl">
-                            <p class="text-white/50 text-sm text-center px-4">ضع صور المعدات الشفافة في:<br><strong>public/images/hero-equipment/</strong></p>
+                            <p class="text-white/50 text-sm text-center px-4">Place transparent equipment images in:<br><strong>public/images/hero-equipment/</strong></p>
                         </div>
                     </div>
                 @endif

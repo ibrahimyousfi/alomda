@@ -1,6 +1,12 @@
 <div class="md:hidden bg-white border-b border-gray-200 p-4 flex justify-between items-center sticky top-0 z-30">
     <div class="flex items-center gap-2">
-        <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-8 w-auto">
+        @if(file_exists(public_path('build/assets/Logo.png')))
+            <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-8 w-auto">
+        @elseif(file_exists(public_path('images/Logo.png')))
+            <img src="{{ asset('images/Logo.png') }}" alt="ALOMDA" class="h-8 w-auto">
+        @else
+            <span class="text-base font-bold text-gray-900">ALOMDA</span>
+        @endif
         <span class="font-bold text-gray-800">Tabak Admin</span>
     </div>
     <button @click="sidebarOpen = !sidebarOpen" class="text-gray-500 hover:text-gold-600 focus:outline-none">

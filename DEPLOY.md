@@ -1,25 +1,25 @@
-# دليل النشر على cPanel
+# cPanel Deployment Guide
 
-## متطلبات الاستضافة
-- PHP 8.2 أو أحدث
+## Hosting Requirements
+- PHP 8.2 or higher
 - Composer
-- MySQL 5.7+ أو MariaDB 10.3+
-- Node.js و NPM (للبناء)
-- mod_rewrite مفعّل
+- MySQL 5.7+ or MariaDB 10.3+
+- Node.js and NPM (for building)
+- mod_rewrite enabled
 
-## خطوات النشر
+## Deployment Steps
 
-### 1. رفع الملفات
-ارفع جميع ملفات المشروع إلى المجلد الرئيسي (public_html أو المجلد المخصص)
+### 1. Upload Files
+Upload all project files to the main directory (public_html or designated folder)
 
-### 2. إعداد قاعدة البيانات
-1. أنشئ قاعدة بيانات جديدة من cPanel
-2. أنشئ مستخدم قاعدة بيانات
-3. امنح المستخدم جميع الصلاحيات على القاعدة
+### 2. Database Setup
+1. Create a new database from cPanel
+2. Create a database user
+3. Grant the user all privileges on the database
 
-### 3. إعداد ملف .env
-1. انسخ `.env.example` إلى `.env`
-2. عدّل الإعدادات التالية:
+### 3. Configure .env File
+1. Copy `.env.example` to `.env`
+2. Update the following settings:
 ```env
 APP_NAME="ALOMDA"
 APP_ENV=production
@@ -34,14 +34,14 @@ DB_USERNAME=your_database_user
 DB_PASSWORD=your_database_password
 ```
 
-### 4. تثبيت الحزم
+### 4. Install Dependencies
 ```bash
 composer install --optimize-autoloader --no-dev
 npm install
 npm run build
 ```
 
-### 5. إعداد Laravel
+### 5. Setup Laravel
 ```bash
 php artisan key:generate
 php artisan migrate --force
@@ -51,18 +51,18 @@ php artisan route:cache
 php artisan view:cache
 ```
 
-### 6. صلاحيات المجلدات
+### 6. Folder Permissions
 ```bash
 chmod -R 755 storage
 chmod -R 755 bootstrap/cache
 ```
 
-### 7. إعدادات cPanel
-- تأكد من أن Document Root يشير إلى مجلد `public`
-- أو استخدم `.htaccess` في الجذر لتوجيه الطلبات إلى `public`
+### 7. cPanel Settings
+- Make sure Document Root points to the `public` folder
+- Or use `.htaccess` in the root to redirect requests to `public`
 
-## ملاحظات مهمة
-- تأكد من أن `APP_DEBUG=false` في الإنتاج
-- قم بتفعيل SSL/HTTPS
-- راجع ملف `.htaccess` للتأكد من عمله بشكل صحيح
-- احفظ نسخة احتياطية من قاعدة البيانات بانتظام
+## Important Notes
+- Make sure `APP_DEBUG=false` in production
+- Enable SSL/HTTPS
+- Review the `.htaccess` file to ensure it works correctly
+- Regularly backup your database

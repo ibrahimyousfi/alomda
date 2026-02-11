@@ -1,6 +1,12 @@
 <aside :class="sidebarOpen ? 'translate-x-0' : (document.dir === 'rtl' ? 'translate-x-full md:translate-x-0' : '-translate-x-full md:translate-x-0')" class="fixed md:static inset-y-0 z-20 w-64 bg-white border-r border-gray-200 transition-transform duration-300 ease-in-out flex flex-col">
     <div class="p-6 hidden md:flex items-center gap-3 border-b border-gray-100">
-        <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-10 w-auto">
+        @if(file_exists(public_path('build/assets/Logo.png')))
+            <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-10 w-auto">
+        @elseif(file_exists(public_path('images/Logo.png')))
+            <img src="{{ asset('images/Logo.png') }}" alt="ALOMDA" class="h-10 w-auto">
+        @else
+            <span class="text-lg font-bold text-gray-900">ALOMDA</span>
+        @endif
     </div>
 
     <nav class="flex-1 p-4 space-y-2 overflow-y-auto">

@@ -11,7 +11,13 @@
 <body class="bg-gray-50 h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-8 transform transition-all hover:scale-[1.01]">
         <div class="text-center mb-8">
-            <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-20 w-auto mx-auto mb-4">
+            @if(file_exists(public_path('build/assets/Logo.png')))
+                <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-20 w-auto mx-auto mb-4">
+            @elseif(file_exists(public_path('images/Logo.png')))
+                <img src="{{ asset('images/Logo.png') }}" alt="ALOMDA" class="h-20 w-auto mx-auto mb-4">
+            @else
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">ALOMDA</h1>
+            @endif
             <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Tabak<span class="text-gold-600">Store</span></h1>
             <p class="text-gray-500 text-sm mt-2 font-medium">Admin Dashboard</p>
         </div>
