@@ -12,7 +12,7 @@ A complete e-commerce platform built with Laravel for selling professional jewel
 - PHP >= 8.2
 - Composer
 - Node.js & NPM
-- MySQL database (or SQLite for quick testing)
+- MySQL database
 
 ## Installation Steps
 
@@ -28,7 +28,15 @@ A complete e-commerce platform built with Laravel for selling professional jewel
    cp .env.example .env
    php artisan key:generate
    ```
-   *Note: The project is currently configured to work with SQLite for easy testing. To switch to MySQL, modify `DB_CONNECTION` in the `.env` file.*
+   Update the database credentials in `.env` file:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_database_user
+   DB_PASSWORD=your_database_password
+   ```
 
 3. **Build the database:**
    ```bash

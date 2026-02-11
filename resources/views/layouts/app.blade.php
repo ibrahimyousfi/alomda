@@ -48,20 +48,37 @@
                         <a href="{{ route('shop') }}" class="text-gray-500 hover:text-gold-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 {{ request()->routeIs('shop') ? 'text-gold-600 font-bold' : '' }}">
                             Shop
                         </a>
+                        @php
+                            $machinesCategory = \App\Models\Category::where('slug', 'machines')->first();
+                            $toolsCategory = \App\Models\Category::where('slug', 'tools')->first();
+                        @endphp
+                        @if($machinesCategory)
+                            <a href="{{ route('category.parent', $machinesCategory->slug) }}" class="text-gray-500 hover:text-gold-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 {{ request()->routeIs('category.parent') && request()->route('slug') == 'machines' ? 'text-gold-600 font-bold' : '' }}">
+                                MACHINES
+                            </a>
+                        @endif
+                        @if($toolsCategory)
+                            <a href="{{ route('category.parent', $toolsCategory->slug) }}" class="text-gray-500 hover:text-gold-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 {{ request()->routeIs('category.parent') && request()->route('slug') == 'tools' ? 'text-gold-600 font-bold' : '' }}">
+                                TOOLS
+                            </a>
+                        @endif
                         <a href="{{ route('about') }}" class="text-gray-500 hover:text-gold-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 {{ request()->routeIs('about') ? 'text-gold-600 font-bold' : '' }}">
                             About Us
-                        </a>
-                        <a href="{{ route('contact') }}" class="text-gray-500 hover:text-gold-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 {{ request()->routeIs('contact') ? 'text-gold-600 font-bold' : '' }}">
-                            Contact
-                        </a>
-                        <a href="{{ route('faq') }}" class="text-gray-500 hover:text-gold-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 {{ request()->routeIs('faq') ? 'text-gold-600 font-bold' : '' }}">
-                            FAQ
                         </a>
                     </div>
                 </div>
 
                 <!-- Right Side Icons -->
-                <div class="hidden md:flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-6">
+                    <!-- Phone Number -->
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                        <span class="text-sm font-semibold">943 097 254 928</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
                     <!-- Search Icon -->
                     <button @click="searchOpen = !searchOpen" class="text-gray-500 hover:text-gold-600 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -90,6 +107,8 @@
                     </a>
 
 
+                    </div>
+                    
                     <!-- Mobile menu button -->
                     <div class="flex items-center md:hidden">
                         <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gold-500">
@@ -113,27 +132,36 @@
             <div class="px-4 pt-2 pb-3 space-y-1">
                 <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gold-600 hover:bg-gold-50">Home</a>
                 <a href="{{ route('shop') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gold-600 hover:bg-gold-50">Shop</a>
+                @php
+                    $machinesCategory = \App\Models\Category::where('slug', 'machines')->first();
+                    $toolsCategory = \App\Models\Category::where('slug', 'tools')->first();
+                @endphp
+                @if($machinesCategory)
+                    <a href="{{ route('category.parent', $machinesCategory->slug) }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gold-600 hover:bg-gold-50">MACHINES</a>
+                @endif
+                @if($toolsCategory)
+                    <a href="{{ route('category.parent', $toolsCategory->slug) }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gold-600 hover:bg-gold-50">TOOLS</a>
+                @endif
                 <a href="{{ route('about') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gold-600 hover:bg-gold-50">About Us</a>
-                <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gold-600 hover:bg-gold-50">Contact</a>
-                <a href="{{ route('faq') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gold-600 hover:bg-gold-50">FAQ</a>
             </div>
         </div>
 
         <!-- Search Bar (Expandable) -->
         <div x-show="searchOpen" x-transition x-cloak class="absolute top-20 left-0 w-full bg-gray-50 border-b border-gray-200 py-4 px-4 shadow-md z-30">
-            <div class="max-w-3xl mx-auto relative">
-                <input type="text" placeholder="Search for products..." class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-gold-500">
+            <form action="{{ route('shop') }}" method="GET" class="max-w-3xl mx-auto relative">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search product..." class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-gold-500">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                     </svg>
                 </div>
-            </div>
+                @if(request('sort'))
+                    <input type="hidden" name="sort" value="{{ request('sort') }}">
+                @endif
+            </form>
         </div>
     </nav>
 
-    <!-- Secondary Header -->
-    <x-secondary-header />
 
     <main class="flex-grow">
         <!-- Toast Component -->
@@ -153,7 +181,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
+    <footer class="text-white pt-16 pb-8" style="background-color: #141412;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 text-center md:text-start">
                 <div class="col-span-1 md:col-span-1">
@@ -295,6 +323,102 @@
                 <span class="text-[10px] group-hover:text-gold-600">More</span>
             </button>
         </div>
+    </div>
+
+    <!-- Fixed Social Media Icons -->
+    <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden md:block" style="right: 20px;">
+        <div class="flex flex-col gap-4">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center bg-white hover:bg-blue-600 rounded-l-lg shadow-lg transition-all duration-300 group border border-gray-200">
+                <svg class="w-6 h-6 text-gray-700 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center bg-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 rounded-l-lg shadow-lg transition-all duration-300 group border border-gray-200">
+                <svg class="w-6 h-6 text-gray-700 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+            
+            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center bg-white hover:bg-red-600 rounded-l-lg shadow-lg transition-all duration-300 group border border-gray-200">
+                <svg class="w-6 h-6 text-gray-700 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+            </a>
+            
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 flex items-center justify-center bg-white hover:bg-blue-700 rounded-l-lg shadow-lg transition-all duration-300 group border border-gray-200">
+                <svg class="w-6 h-6 text-gray-700 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <div class="wabtn" id="wabutton">
+        <style>
+            [wa-tooltip] {
+                position: relative;
+                cursor: default;
+            }
+            [wa-tooltip]:hover::before {
+                content: attr(wa-tooltip);
+                font-size: 16px;
+                text-align: center;
+                position: absolute;
+                display: block;
+                right: calc(0% - 100px);
+                left: null;
+                min-width: 200px;
+                max-width: 200px;
+                bottom: calc(100% + 40px);
+                transform: translate(-50%);
+                animation: fade-in 500ms ease;
+                background: #00E785;
+                border-radius: 4px;
+                padding: 10px;
+                color: #ffffff;
+                z-index: 1;
+            }
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+            @keyframes fade-in {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        </style>
+        <a 
+            wa-tooltip="We are at your service. Contact us now" 
+            target="_blank" 
+            href="https://wa.me/212661623517?text=Hello%2C%20I%20would%20like%20to%20get%20more%20information" 
+            style="cursor: pointer;height: auto;width: auto;padding: 10px 10px 10px 10px;position: fixed !important;color: #fff;bottom: 20px;right: 20px;display: flex;text-decoration: none;font-size: 18px;font-weight: 600;font-family: sans-serif;align-items: center;z-index: 999999999 !important;background-color: #00E785;box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.4);border-radius: 100px;animation: pulse 2.5s ease infinite;">
+            <svg width="42" height="42" style="padding: 5px;" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1024_354)">
+                    <path d="M23.8759 4.06939C21.4959 1.68839 18.3316 0.253548 14.9723 0.0320463C11.613 -0.189455 8.28774 0.817483 5.61565 2.86535C2.94357 4.91323 1.10682 7.86244 0.447451 11.1638C-0.21192 14.4652 0.351026 17.8937 2.03146 20.8109L0.0625 28.0004L7.42006 26.0712C9.45505 27.1794 11.7353 27.7601 14.0524 27.7602H14.0583C16.8029 27.7599 19.4859 26.946 21.768 25.4212C24.0502 23.8965 25.829 21.7294 26.8798 19.1939C27.9305 16.6583 28.206 13.8682 27.6713 11.1761C27.1367 8.48406 25.8159 6.01095 23.8759 4.06939ZM14.0583 25.4169H14.0538C11.988 25.417 9.96008 24.8617 8.1825 23.8091L7.7611 23.5593L3.3945 24.704L4.56014 20.448L4.28546 20.0117C2.92594 17.8454 2.32491 15.2886 2.57684 12.7434C2.82877 10.1982 3.91938 7.80894 5.67722 5.95113C7.43506 4.09332 9.76045 2.87235 12.2878 2.48017C14.8152 2.08799 17.4013 2.54684 19.6395 3.78457C21.8776 5.02231 23.641 6.96875 24.6524 9.3179C25.6638 11.6671 25.8659 14.2857 25.2268 16.7622C24.5877 19.2387 23.1438 21.4326 21.122 22.999C19.1001 24.5655 16.6151 25.4156 14.0575 25.4157L14.0583 25.4169Z" fill="#E0E0E0"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6291 7.98363C10.3723 7.41271 10.1019 7.40123 9.85771 7.39143C9.65779 7.38275 9.42903 7.38331 9.20083 7.38331C9.0271 7.3879 8.8562 7.42837 8.69887 7.5022C8.54154 7.57602 8.40119 7.68159 8.28663 7.81227C7.899 8.17929 7.59209 8.62305 7.38547 9.11526C7.17884 9.60747 7.07704 10.1373 7.08655 10.6711C7.08655 12.3578 8.31519 13.9877 8.48655 14.2164C8.65791 14.4452 10.8581 18.0169 14.3425 19.3908C17.2382 20.5327 17.8276 20.3056 18.4562 20.2485C19.0848 20.1913 20.4843 19.4194 20.7701 18.6189C21.056 17.8183 21.0557 17.1323 20.9701 16.989C20.8844 16.8456 20.6559 16.7605 20.3129 16.5889C19.9699 16.4172 18.2849 15.5879 17.9704 15.4736C17.656 15.3594 17.4275 15.3023 17.199 15.6455C16.9705 15.9888 16.3139 16.7602 16.1137 16.9895C15.9135 17.2189 15.7136 17.2471 15.3709 17.0758C14.3603 16.6729 13.4275 16.0972 12.6143 15.3745C11.8648 14.6818 11.2221 13.8819 10.7072 13.0007C10.5073 12.6579 10.6857 12.472 10.8579 12.3007C11.0119 12.1472 11.2006 11.9005 11.3722 11.7003C11.5129 11.5271 11.6282 11.3346 11.7147 11.1289C11.7603 11.0343 11.7817 10.9299 11.7768 10.825C11.7719 10.7201 11.7409 10.6182 11.6867 10.5283C11.6001 10.3566 10.9337 8.66151 10.6291 7.98363Z" fill="white"></path>
+                    <path d="M23.7628 4.02445C21.4107 1.66917 18.2825 0.249336 14.9611 0.0294866C11.6397 -0.190363 8.35161 0.804769 5.70953 2.82947C3.06745 4.85417 1.25154 7.77034 0.600156 11.0346C-0.051233 14.299 0.506321 17.6888 2.16894 20.5724L0.222656 27.6808L7.49566 25.7737C9.50727 26.8692 11.7613 27.4432 14.0519 27.4434H14.0577C16.7711 27.4436 19.4235 26.6392 21.6798 25.1321C23.936 23.6249 25.6947 21.4825 26.7335 18.9759C27.7722 16.4693 28.0444 13.711 27.5157 11.0497C26.9869 8.38835 25.6809 5.94358 23.7628 4.02445ZM14.0577 25.1269H14.0547C12.0125 25.1271 10.0078 24.5782 8.25054 23.5377L7.8339 23.2907L3.51686 24.4222L4.66906 20.2143L4.39774 19.7831C3.05387 17.6415 2.4598 15.1141 2.70892 12.598C2.95804 10.082 4.03622 7.72013 5.77398 5.88366C7.51173 4.04719 9.81051 2.84028 12.3089 2.45266C14.8074 2.06505 17.3638 2.5187 19.5763 3.74232C21.7888 4.96593 23.5319 6.89011 24.5317 9.21238C25.5314 11.5346 25.7311 14.1233 25.0993 16.5714C24.4675 19.0195 23.0401 21.1883 21.0414 22.7367C19.0427 24.2851 16.5861 25.1254 14.0577 25.1255V25.1269Z" fill="white"></path>
+                </g>
+                <defs>
+                    <clipPath id="clip0_1024_354">
+                        <rect width="27.8748" height="28" fill="white" transform="translate(0.0625)"></rect>
+                    </clipPath>
+                </defs>
+            </svg>
+            <span class="button-text"></span>
+        </a>
     </div>
 </body>
 </html>

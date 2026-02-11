@@ -51,40 +51,8 @@ class ShopController extends Controller
                 break;
         }
 
-        $products = $query->paginate(12)->withQueryString();
-        
-        // Get categories hierarchically: Parent categories with their children
-        $categories = \Illuminate\Support\Facades\Cache::remember('categories_hierarchical', 3600, function () {
-            $parentCategories = Category::where('is_parent', true)
-                ->with(['children' => function($query) {
-                    $query->withCount('products');
-                }])
-                ->withCount('products')
-                ->orderBy('name_en')
-                ->get();
-            
-            // Also get child categories that have products
-            $childCategories = Category::where('is_parent', false)
-                ->whereNotNull('parent_id')
-                ->whereHas('products')
-                ->withCount('products')
-                ->orderBy('name_en')
-                ->get();
-            
-            return [
-                'parents' => $parentCategories,
-                'children' => $childCategories,
-            ];
-        });
-        
-        $minPrice = \Illuminate\Support\Facades\Cache::remember('min_price', 3600, function () {
-            return Product::min('price') ?? 0;
-        });
-        
-        $maxPrice = \Illuminate\Support\Facades\Cache::remember('max_price', 3600, function () {
-            return Product::max('price') ?? 1000;
-        });
+        $products = $query->paginate(25)->withQueryString();
 
-        return view('frontend.shop', compact('products', 'categories', 'minPrice', 'maxPrice'));
+        return view('frontend.shop', compact('products'));
     }
 }

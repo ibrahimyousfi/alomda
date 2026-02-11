@@ -27,16 +27,9 @@
 
     <!-- Content -->
     <div class="p-3 sm:p-4 flex flex-col gap-2">
-        <!-- Category & Rating in same line -->
-        <div class="flex items-center justify-between gap-2">
-            <div class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide truncate">
-                {{ $product->category->name_en }}
-            </div>
-            <!-- Rating -->
-            <div class="flex items-center gap-1 text-yellow-400 text-[10px] sm:text-xs flex-shrink-0">
-                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                <span class="text-gray-400 font-medium">4.9</span>
-            </div>
+        <!-- Category -->
+        <div class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide truncate">
+            {{ $product->category->name_en }}
         </div>
 
         <!-- Title & Price in same line -->
@@ -51,9 +44,5 @@
             </div>
         </div>
 
-        <!-- Action Button -->
-        <div class="pt-1">
-            <x-add-to-cart-button :productId="$product->id" />
-        </div>
     </div>
 </div>

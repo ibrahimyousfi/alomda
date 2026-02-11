@@ -11,28 +11,73 @@
             </p>
         </div>
 
+        <!-- Large Banner -->
+        <div class="mb-16 rounded-xl overflow-hidden shadow-lg">
+            @if(file_exists(public_path('images/about/banner.jpg')))
+                <img src="{{ asset('images/about/banner.jpg') }}" alt="ALOMDA Banner" class="w-full h-[400px] md:h-[500px] object-cover">
+            @elseif(file_exists(public_path('images/about/banner.png')))
+                <img src="{{ asset('images/about/banner.png') }}" alt="ALOMDA Banner" class="w-full h-[400px] md:h-[500px] object-cover">
+            @elseif(file_exists(public_path('images/about/banner.webp')))
+                <img src="{{ asset('images/about/banner.webp') }}" alt="ALOMDA Banner" class="w-full h-[400px] md:h-[500px] object-cover">
+            @else
+                <div class="w-full h-[400px] md:h-[500px] bg-gradient-to-r from-gold-600 to-gold-800 flex items-center justify-center">
+                    <p class="text-white text-lg">Place banner image at: <strong>public/images/about/banner.jpg</strong></p>
+                </div>
+            @endif
+        </div>
+
         <!-- Main Content -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             <!-- Story Section -->
-            <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">About ALOMDA</h2>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    ALOMDA is a specialized supplier of professional tools and equipment dedicated to jewelers, goldsmiths, and precious metal artisans. Our mission is simple: to provide reliable, precise, and durable tools that facilitate daily work and guarantee high-quality results.
-                </p>
-                <p class="text-gray-600 leading-relaxed">
-                    We believe that the quality of a piece of jewelry begins with the quality of the tool. That's why ALOMDA selects and offers solutions adapted to the real requirements of workshops, from beginners to confirmed professionals.
-                </p>
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                <div class="h-64 overflow-hidden">
+                    @if(file_exists(public_path('images/about/image1.jpg')))
+                        <img src="{{ asset('images/about/image1.jpg') }}" alt="About ALOMDA" class="w-full h-full object-cover">
+                    @elseif(file_exists(public_path('images/about/image1.png')))
+                        <img src="{{ asset('images/about/image1.png') }}" alt="About ALOMDA" class="w-full h-full object-cover">
+                    @elseif(file_exists(public_path('images/about/image1.webp')))
+                        <img src="{{ asset('images/about/image1.webp') }}" alt="About ALOMDA" class="w-full h-full object-cover">
+                    @else
+                        <div class="w-full h-full bg-gold-100 flex items-center justify-center">
+                            <p class="text-gray-500 text-sm text-center px-4">Place image at: <strong>public/images/about/image1.jpg</strong></p>
+                        </div>
+                    @endif
+                </div>
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">About ALOMDA</h2>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        ALOMDA is a specialized supplier of professional tools and equipment dedicated to jewelers, goldsmiths, and precious metal artisans. Our mission is simple: to provide reliable, precise, and durable tools that facilitate daily work and guarantee high-quality results.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        We believe that the quality of a piece of jewelry begins with the quality of the tool. That's why ALOMDA selects and offers solutions adapted to the real requirements of workshops, from beginners to confirmed professionals.
+                    </p>
+                </div>
             </div>
 
             <!-- Mission Section -->
-            <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h2>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    We believe that the quality of a piece of jewelry begins with the quality of the tool. That's why ALOMDA selects and offers solutions adapted to the real requirements of workshops, from beginners to confirmed professionals.
-                </p>
-                <p class="text-gray-600 leading-relaxed">
-                    By choosing ALOMDA, you're investing in professional-grade tools that enhance your craftsmanship and ensure exceptional results in every project.
-                </p>
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                <div class="h-64 overflow-hidden">
+                    @if(file_exists(public_path('images/about/image2.jpg')))
+                        <img src="{{ asset('images/about/image2.jpg') }}" alt="Our Vision" class="w-full h-full object-cover">
+                    @elseif(file_exists(public_path('images/about/image2.png')))
+                        <img src="{{ asset('images/about/image2.png') }}" alt="Our Vision" class="w-full h-full object-cover">
+                    @elseif(file_exists(public_path('images/about/image2.webp')))
+                        <img src="{{ asset('images/about/image2.webp') }}" alt="Our Vision" class="w-full h-full object-cover">
+                    @else
+                        <div class="w-full h-full bg-gold-100 flex items-center justify-center">
+                            <p class="text-gray-500 text-sm text-center px-4">Place image at: <strong>public/images/about/image2.jpg</strong></p>
+                        </div>
+                    @endif
+                </div>
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h2>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        We believe that the quality of a piece of jewelry begins with the quality of the tool. That's why ALOMDA selects and offers solutions adapted to the real requirements of workshops, from beginners to confirmed professionals.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        By choosing ALOMDA, you're investing in professional-grade tools that enhance your craftsmanship and ensure exceptional results in every project.
+                    </p>
+                </div>
             </div>
         </div>
 
