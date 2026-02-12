@@ -1,0 +1,56 @@
+============================================
+  ORDERS TO RUN IN CPANEL TERMINAL
+  Run from project root (where artisan is)
+  Copy ALL output and send it
+============================================
+
+--- STEP 0: Go to project folder (change path to yours) ---
+cd ~/public_html
+# or: cd ~/alomdatools.ma
+# or wherever your Laravel project is (folder containing artisan, app, public)
+pwd
+ls -la
+
+--- STEP 1: PHP version ---
+php -v
+
+--- STEP 2: Check .env ---
+ls -la .env
+# If missing: cp .env.example .env && php artisan key:generate
+
+--- STEP 3: Check vendor (Composer) ---
+ls -la vendor
+# If missing: composer install --no-dev --optimize-autoloader
+
+--- STEP 4: Storage and bootstrap permissions ---
+ls -la storage
+ls -la storage/framework
+ls -la bootstrap/cache
+chmod -R 755 storage bootstrap/cache
+chmod 644 .env
+
+--- STEP 5: Artisan test ---
+php artisan --version
+
+--- STEP 6: Clear and cache config ---
+php artisan config:clear
+php artisan config:cache
+
+--- STEP 7: If error, show last log ---
+tail -100 storage/logs/laravel.log
+
+--- STEP 8: Document root (important) ---
+# Your domain must point to the "public" folder, not project root.
+# Example: Document Root = /home/username/public_html/yourproject/public
+echo "Document root should be: $(pwd)/public"
+
+============================================
+  ONE-LINE FULL DIAGNOSTIC (copy all, paste in terminal)
+============================================
+
+echo "=== PATH ===" && pwd && echo "=== PHP ===" && php -v && echo "=== FILES ===" && ls -la && echo "=== .env ===" && ls -la .env 2>&1 && echo "=== VENDOR ===" && ls vendor 2>&1 | head -3 && echo "=== STORAGE ===" && ls -la storage bootstrap/cache 2>&1 && echo "=== ARTISAN ===" && php artisan --version 2>&1 && echo "=== LOG TAIL ===" && tail -50 storage/logs/laravel.log 2>&1
+
+============================================
+  AFTER RUNNING: copy entire terminal output
+  and send it for analysis
+============================================
