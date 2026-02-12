@@ -193,19 +193,14 @@
 
     <!-- Products Grid -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-        @foreach($latestProducts as $product)
+        @foreach($products as $product)
             <x-product-card :product="$product" />
         @endforeach
     </div>
 
-    <!-- View More Button -->
-    <div class="mt-12 flex justify-center">
-        <a href="{{ route('shop') }}" class="bg-gold-600 text-white px-8 py-3 rounded-full font-bold hover:bg-gold-700 transition-all shadow-lg hover:shadow-gold-500/30 flex items-center justify-center gap-2">
-            View More
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-            </svg>
-        </a>
+    <!-- Pagination: results text left, page numbers right -->
+    <div class="mt-12 w-full">
+        {{ $products->links('vendor.pagination.tailwind') }}
     </div>
 </div>
 

@@ -45,9 +45,6 @@
                         <a href="{{ route('home') }}" class="text-gray-900 hover:text-gold-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 {{ request()->routeIs('home') ? 'text-gold-600 font-bold' : '' }}">
                             Home
                         </a>
-                        <a href="{{ route('shop') }}" class="text-gray-500 hover:text-gold-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 {{ request()->routeIs('shop') ? 'text-gold-600 font-bold' : '' }}">
-                            Shop
-                        </a>
                         @php
                             $machinesCategory = \App\Models\Category::where('slug', 'machines')->first();
                             $toolsCategory = \App\Models\Category::where('slug', 'tools')->first();
@@ -131,7 +128,6 @@
         <div x-show="mobileMenuOpen" x-transition x-cloak class="md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg z-40">
             <div class="px-4 pt-2 pb-3 space-y-1">
                 <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gold-600 hover:bg-gold-50">Home</a>
-                <a href="{{ route('shop') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gold-600 hover:bg-gold-50">Shop</a>
                 @php
                     $machinesCategory = \App\Models\Category::where('slug', 'machines')->first();
                     $toolsCategory = \App\Models\Category::where('slug', 'tools')->first();

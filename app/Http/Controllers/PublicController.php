@@ -12,23 +12,16 @@ use Illuminate\Support\Facades\DB;
 
 class PublicController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $featuredProducts = \Illuminate\Support\Facades\Cache::remember('featured_products', 3600, function () {
-            return Product::with('category')
-                ->where('is_featured', true)
-                ->take(6)
-                ->get();
-        });
-        
         $categories = \Illuminate\Support\Facades\Cache::remember('categories_with_count', 3600, function () {
             return Category::withCount('products')->get();
         });
-        
-        $latestProducts = Product::with('category')
+
+        $products = Product::with('category')
             ->latest()
-            ->take(12)
-            ->get();
+            ->paginate(12)
+            ->withQueryString();
 
         // Get equipment images from public/images/hero-equipment (numbered images)
         $equipmentImages = [];
@@ -54,7 +47,7 @@ class PublicController extends Controller
             }
         }
 
-        return view('frontend.home', compact('featuredProducts', 'categories', 'latestProducts', 'equipmentImages'));
+        return view('frontend.home', compact('products', 'categories', 'equipmentImages'));
     }
 
     public function show($slug)
