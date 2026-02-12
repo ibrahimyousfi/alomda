@@ -1,12 +1,19 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
-    # Redirect to public folder
+    RewriteBase /
+
+    # If request is for a real file/dir in root, serve it
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Send everything else to public/
     RewriteCond %{REQUEST_URI} !^/public/
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
+# Default to index.php so / runs Laravel
+DirectoryIndex index.php
 
 # Prevent access to sensitive files
 <FilesMatch "^(\.env|\.git|composer\.(json|lock)|package(-lock)?\.json|\.htaccess)$">

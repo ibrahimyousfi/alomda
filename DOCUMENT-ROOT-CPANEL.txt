@@ -1,0 +1,43 @@
+============================================
+  FIX 404 - Set Document Root to public
+  (cPanel)
+============================================
+
+The site returns 404 because the domain must
+point to the PUBLIC folder, not the project root.
+
+--- IN CPANEL ---
+
+1. Open cPanel and go to:  Domains  (or  Addon Domains )
+
+2. Find the domain:  alomdatools.ma
+
+3. Click  Manage  or  Edit  (Document Root)
+
+4. Set DOCUMENT ROOT to one of:
+
+   Option A (recommended - full path):
+   /home/swissleg/alomdatools.ma/public
+
+   Option B (relative to home):
+   alomdatools.ma/public
+
+   Option C (if domain is in public_html):
+   public_html/alomdatools.ma/public
+
+5. Save / Change
+
+6. Wait 1-2 minutes and open: https://alomdatools.ma
+
+============================================
+  Where to find it in cPanel
+============================================
+
+- Domains  ->  Domains  -> next to your domain
+  there is "Document Root" or a folder icon
+  -> change to .../public
+
+- Or:  Addon Domains  ->  alomdatools.ma
+  ->  Document Root  ->  set to  .../public
+
+============================================
