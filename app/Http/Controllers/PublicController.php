@@ -23,27 +23,19 @@ class PublicController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        // Get equipment images from public/images/hero-equipment (numbered images)
+        // Get equipment images from public/images/hero-equipment (any .png or .webp)
         $equipmentImages = [];
         $imagePath = public_path('images/hero-equipment');
         if (is_dir($imagePath)) {
-            // Look for numbered images (1.webp, 1.png, 2.webp, 2.png, etc.)
-            $index = 1;
-            while (true) {
-                $webpFile = $imagePath . '/' . $index . '.webp';
-                $pngFile = $imagePath . '/' . $index . '.png';
-                
-                // Prefer webp over png if both exist
-                if (file_exists($webpFile)) {
-                    $equipmentImages[] = asset('images/hero-equipment/' . $index . '.webp');
-                    $index++;
-                } elseif (file_exists($pngFile)) {
-                    $equipmentImages[] = asset('images/hero-equipment/' . $index . '.png');
-                    $index++;
-                } else {
-                    // No more numbered images found
-                    break;
-                }
+            $files = array_merge(
+                glob($imagePath . DIRECTORY_SEPARATOR . '*.png') ?: [],
+                glob($imagePath . DIRECTORY_SEPARATOR . '*.webp') ?: []
+            );
+            usort($files, function ($a, $b) {
+                return strnatcasecmp(basename($a), basename($b));
+            });
+            foreach (array_unique($files) as $file) {
+                $equipmentImages[] = asset('images/hero-equipment/' . basename($file));
             }
         }
 

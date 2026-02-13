@@ -40,9 +40,6 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
                             </svg>
                         </a>
-                        <a href="{{ route('shop') }}" class="bg-white/90 text-gray-800 border border-white px-8 py-3.5 rounded-full font-bold hover:bg-white transition-all flex items-center justify-center">
-                            View All
-                        </a>
                     </div>
 
                     <!-- Trust Indicators -->
@@ -61,37 +58,39 @@
 
                 <!-- Equipment Images Carousel -->
                 @if(count($equipmentImages) > 0)
-                    <div class="w-full md:w-1/2 relative hidden md:block" 
-                         x-data="carousel()"
-                         x-init="init()">
+                    <div class="w-full md:w-1/2 relative hidden md:block overflow-hidden" 
+                         x-data="heroCarousel({{ count($equipmentImages) }})"
+                         x-init="start()">
                         <div class="relative w-full h-[400px] md:h-[500px]">
                             @foreach($equipmentImages as $index => $image)
                                 <div 
-                                    x-show="currentIndex === {{ $index }}"
+                                    x-show="current === {{ $index }}"
                                     x-transition:enter="transition ease-out duration-500"
-                                    x-transition:enter-start="opacity-0 scale-95"
-                                    x-transition:enter-end="opacity-100 scale-100"
+                                    x-transition:enter-start="opacity-0"
+                                    x-transition:enter-end="opacity-100"
                                     x-transition:leave="transition ease-in duration-300"
-                                    x-transition:leave-start="opacity-100 scale-100"
-                                    x-transition:leave-end="opacity-0 scale-95"
-                                    class="absolute inset-0 flex items-center justify-center"
-                                    style="display: {{ $index === 0 ? 'flex' : 'none' }};"
+                                    x-transition:leave-start="opacity-100"
+                                    x-transition:leave-end="opacity-0"
+                                    class="absolute inset-0 flex items-center justify-center bg-transparent"
+                                    style="pointer-events: none;"
                                 >
                                     <img 
                                         src="{{ $image }}" 
                                         alt="Equipment {{ $index + 1 }}"
                                         class="w-full h-full object-contain"
+                                        loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
                                     >
                                 </div>
                             @endforeach
-                            
                             <!-- Navigation Dots -->
-                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20" style="pointer-events: auto;">
                                 @foreach($equipmentImages as $index => $image)
                                     <button 
-                                        @click="currentIndex = {{ $index }}"
-                                        :class="currentIndex === {{ $index }} ? 'bg-gold-500' : 'bg-white/50'"
-                                        class="w-2 h-2 rounded-full transition-all duration-300"
+                                        type="button"
+                                        @click="go({{ $index }})"
+                                        :class="current === {{ $index }} ? 'bg-gold-500 scale-110' : 'bg-white/50 hover:bg-white/70'"
+                                        class="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                                        :aria-label="'Slide {{ $index + 1 }}'"
                                     ></button>
                                 @endforeach
                             </div>
@@ -107,18 +106,27 @@
                 @endif
                 
                 <script>
-                function carousel() {
+                function heroCarousel(total) {
                     return {
-                        currentIndex: 0,
-                        images: @json($equipmentImages),
-                        init() {
-                            if (this.images && this.images.length > 1) {
-                                setInterval(() => {
-                                    this.currentIndex = (this.currentIndex + 1) % this.images.length;
-                                }, 3000);
-                            }
+                        current: 0,
+                        total: total,
+                        timer: null,
+                        start() {
+                            if (this.total <= 1) return;
+                            var self = this;
+                            this.timer = setInterval(function() {
+                                self.current = (self.current + 1) % self.total;
+                            }, 4000);
+                        },
+                        go(index) {
+                            this.current = index;
+                            if (this.timer) clearInterval(this.timer);
+                            var self = this;
+                            this.timer = setInterval(function() {
+                                self.current = (self.current + 1) % self.total;
+                            }, 4000);
                         }
-                    }
+                    };
                 }
                 </script>
             </div>
@@ -175,20 +183,10 @@
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" id="products">
 
-    <!-- Section Header with Left Title and Right Filters -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-12 gap-4">
-        <!-- Left Side: Title -->
-        <div class="text-left">
-            <span class="text-gold-600 font-bold tracking-wider uppercase text-sm block mb-2">Our Collection</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Latest Products</h2>
-        </div>
-        
-        <!-- Right Side: Filter Tabs -->
-        <div class="flex flex-wrap justify-start md:justify-end gap-4">
-            <button class="px-6 py-2 rounded-full bg-gray-900 text-white text-sm font-medium transition-all shadow-lg">All Products</button>
-            <button class="px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 text-sm font-medium hover:bg-gold-50 hover:text-gold-600 hover:border-gold-200 transition-all">Best Sellers</button>
-            <button class="px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 text-sm font-medium hover:bg-gold-50 hover:text-gold-600 hover:border-gold-200 transition-all">New Arrivals</button>
-        </div>
+    <!-- Section Header -->
+    <div class="mb-12">
+        <span class="text-gold-600 font-bold tracking-wider uppercase text-sm block mb-2">Our Collection</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Latest Products</h2>
     </div>
 
     <!-- Products Grid -->
@@ -210,7 +208,9 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <!-- Image -->
             <div class="order-2 lg:order-1">
-                @if(file_exists(public_path('images/about/mission.jpg')))
+                @if(file_exists(public_path('images/about/alomda.gif')))
+                    <img src="{{ asset('images/about/alomda.gif') }}" alt="ALOMDA" class="w-full h-[500px] object-cover rounded-2xl shadow-xl">
+                @elseif(file_exists(public_path('images/about/mission.jpg')))
                     <img src="{{ asset('images/about/mission.jpg') }}" alt="ALOMDA Mission" class="w-full h-[500px] object-cover rounded-2xl shadow-xl">
                 @elseif(file_exists(public_path('images/about/mission.png')))
                     <img src="{{ asset('images/about/mission.png') }}" alt="ALOMDA Mission" class="w-full h-[500px] object-cover rounded-2xl shadow-xl">
@@ -218,7 +218,7 @@
                     <img src="{{ asset('images/about/mission.webp') }}" alt="ALOMDA Mission" class="w-full h-[500px] object-cover rounded-2xl shadow-xl">
                 @else
                     <div class="w-full h-[500px] bg-gradient-to-br from-gold-100 to-gold-200 rounded-2xl shadow-xl flex items-center justify-center">
-                        <p class="text-gray-600 text-center px-4">Place mission image at: <strong>public/images/about/mission.jpg</strong></p>
+                        <p class="text-gray-600 text-center px-4">Place <strong>public/images/about/alomda.gif</strong> or mission image</p>
                     </div>
                 @endif
             </div>
@@ -315,13 +315,13 @@
             <div class="flex animate-scroll" style="gap: 4rem;">
                 <!-- First set of logos -->
                 @foreach($partnerImages as $index => $logo)
-                    <div class="flex-shrink-0 w-32 h-20 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+                    <div class="flex-shrink-0 w-32 h-20 flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300">
                         <img src="{{ $logo }}" alt="Partner {{ $index + 1 }}" class="max-w-full max-h-full object-contain">
                     </div>
                 @endforeach
                 <!-- Duplicate for seamless loop -->
                 @foreach($partnerImages as $index => $logo)
-                    <div class="flex-shrink-0 w-32 h-20 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+                    <div class="flex-shrink-0 w-32 h-20 flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300">
                         <img src="{{ $logo }}" alt="Partner {{ $index + 1 }}" class="max-w-full max-h-full object-contain">
                     </div>
                 @endforeach
