@@ -21,10 +21,10 @@
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased flex flex-col min-h-screen pb-20 md:pb-0" x-data="{ mobileMenuOpen: false, searchOpen: false }">
 
-    @php
-        $machinesCategory = \App\Models\Category::where('slug', 'machines')->first();
-        $toolsCategory = \App\Models\Category::where('slug', 'tools')->first();
-    @endphp
+                        @php
+                            $machinesCategory = \App\Models\Category::where('slug', 'machines')->first();
+                            $toolsCategory = \App\Models\Category::where('slug', 'tools')->first();
+                        @endphp
 
     @include('layouts.partials.header')
 

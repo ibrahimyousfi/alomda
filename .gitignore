@@ -1,3 +1,4 @@
+# ========== ملف واحد فقط - كل قواعد التجاهل هنا ==========
 *.log
 .DS_Store
 .env
@@ -22,3 +23,37 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Bootstrap cache
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
+
+# Database
+/database/*.sqlite*
+
+# Storage logs
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# Storage framework
+/storage/framework/compiled.php
+/storage/framework/config.php
+/storage/framework/down
+/storage/framework/events.scanned.php
+/storage/framework/maintenance.php
+/storage/framework/routes.php
+/storage/framework/routes.scanned.php
+/storage/framework/schedule-*
+/storage/framework/services.json
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+/storage/framework/cache/data/*
+!/storage/framework/cache/data/.gitkeep
+/storage/framework/testing/*
+!/storage/framework/testing/.gitkeep
+
+# Storage app: ignore contents except public (partners, products, categories are tracked)
+/storage/app/*
+!/storage/app/public
