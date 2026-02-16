@@ -63,6 +63,11 @@
                         <input type="text" name="name_en" value="{{ old('name_en') }}" class="w-full px-4 py-2.5 rounded-xl border-gray-200 focus:border-gold-500 focus:ring-gold-500 shadow-sm transition-all text-left" placeholder="e.g. Electronics" dir="ltr">
                         @error('name_en') <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p> @enderror
                     </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Name (French)</label>
+                        <input type="text" name="name_fr" value="{{ old('name_fr') }}" class="w-full px-4 py-2.5 rounded-xl border-gray-200 focus:border-gold-500 focus:ring-gold-500 shadow-sm transition-all text-left" placeholder="e.g. Électronique" dir="ltr">
+                        @error('name_fr') <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p> @enderror
+                    </div>
                 </div>
 
                 <!-- Image -->

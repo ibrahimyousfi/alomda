@@ -28,11 +28,13 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'name_fr' => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'description_ar' => 'required|string',
             'description_en' => 'required|string',
+            'description_fr' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
             'gallery.*' => 'nullable|image|max:2048',
         ]);
@@ -72,11 +74,13 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'name_fr' => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'description_ar' => 'required|string',
             'description_en' => 'required|string',
+            'description_fr' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
             'gallery.*' => 'nullable|image|max:2048',
         ]);

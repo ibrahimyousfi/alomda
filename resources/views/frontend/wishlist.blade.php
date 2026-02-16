@@ -3,7 +3,7 @@
 @section('content')
 <div class="bg-gray-50 min-h-screen py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Wishlist</h1>
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">{{ __('Wishlist') }}</h1>
 
         @if(count($wishlist) > 0)
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -37,10 +37,10 @@
         @else
             <x-empty-state 
                 icon="heart"
-                title="Your wishlist is empty"
-                message="Save items you love here."
+                :title="__('Your wishlist is empty')"
+                :message="__('Save items you love here.')"
                 :actionRoute="route('shop')"
-                actionText="Browse Shop"
+                :actionText="__('Browse Shop')"
             />
         @endif
     </div>

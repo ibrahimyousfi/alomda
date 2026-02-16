@@ -4,31 +4,32 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * Password is set via DB to avoid double-hashing with model cast.
      */
     public function run(): void
     {
+        $email = 'ibrahimyousfi000@gmail.com';
+        $password = 'ibrahimyousfi000@gmail.com';
+
         $user = User::firstOrCreate(
-            ['email' => 'ibrahimyousfi000@gmail.com'],
-            [
-                'name' => 'Admin',
-                'password' => Hash::make('ibrahimyousfi000@gmail.com'),
-            ]
+            ['email' => $email],
+            ['name' => 'Admin', 'password' => $password]
         );
 
-        // Update password if user exists
-        if ($user->wasRecentlyCreated === false) {
-            $user->password = Hash::make('ibrahimyousfi000@gmail.com');
-            $user->save();
-        }
+        // Update password directly in DB (single bcrypt hash) so login works
+        DB::table('users')->where('id', $user->id)->update([
+            'password' => Hash::make($password),
+        ]);
 
-        $this->command->info('Admin user created/updated successfully!');
-        $this->command->info('Email: ibrahimyousfi000@gmail.com');
-        $this->command->info('Password: ibrahimyousfi000@gmail.com');
+        $this->command->info('Admin user created/updated.');
+        $this->command->info('Email: ' . $email);
+        $this->command->info('Password: ' . $password);
     }
 }

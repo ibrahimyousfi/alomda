@@ -7,7 +7,7 @@
         @else
             <span class="text-base font-bold text-gray-900">ALOMDA</span>
         @endif
-        <span class="font-bold text-gray-800">Tabak Admin</span>
+        <span class="font-bold text-gray-800">ALOMDA Admin</span>
     </div>
     <button @click="sidebarOpen = !sidebarOpen" class="text-gray-500 hover:text-gold-600 focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

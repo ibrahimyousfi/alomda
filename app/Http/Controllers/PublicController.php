@@ -6,7 +6,9 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Partner;
 use App\Models\Product;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,7 +41,32 @@ class PublicController extends Controller
             }
         }
 
-        return view('frontend.home', compact('products', 'categories', 'equipmentImages'));
+        $heroVideoUrl = SiteSetting::get('hero_video_url', 'https://www.youtube.com/embed/ZIkP_WMcLz0');
+        $heroEmbedUrl = $heroVideoUrl;
+        if (preg_match('/embed\/([a-zA-Z0-9_-]+)/', $heroVideoUrl, $m)) {
+            $sep = str_contains($heroVideoUrl, '?') ? '&' : '?';
+            $heroEmbedUrl = rtrim($heroVideoUrl, '?&') . $sep . 'autoplay=1&mute=1&loop=1&playlist=' . $m[1] . '&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1';
+        }
+        $partnerImages = Partner::orderBy('sort_order')->get()->map(fn ($p) => $p->image_url)->filter()->values()->all();
+
+        // Fallback: if no partners in DB, load from storage/partners folder
+        if (empty($partnerImages)) {
+            $partnersPaths = [public_path('storage/partners'), storage_path('app/public/partners')];
+            foreach ($partnersPaths as $partnersPath) {
+                if (is_dir($partnersPath)) {
+                    $files = @scandir($partnersPath) ?: [];
+                    foreach ($files as $file) {
+                        if ($file === '.' || $file === '..') continue;
+                        if (preg_match('/\.(jpg|jpeg|png|webp|svg)$/i', $file)) {
+                            $partnerImages[] = asset('storage/partners/' . $file);
+                        }
+                    }
+                    if (!empty($partnerImages)) break;
+                }
+            }
+        }
+
+        return view('frontend.home', compact('products', 'categories', 'equipmentImages', 'heroEmbedUrl', 'partnerImages'));
     }
 
     public function show($slug)
@@ -59,7 +86,10 @@ class PublicController extends Controller
 
     public function about()
     {
-        return view('frontend.about');
+        $aboutBanner = SiteSetting::get('about_banner');
+        $aboutImage1 = SiteSetting::get('about_image1');
+        $aboutImage2 = SiteSetting::get('about_image2');
+        return view('frontend.about', compact('aboutBanner', 'aboutImage1', 'aboutImage2'));
     }
 
     public function contact()

@@ -5,15 +5,17 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About Us</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ __('About Us') }}</h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Discover ALOMDA, your trusted partner for professional jewelry tools and equipment.
+                {{ __('About intro') }}
             </p>
         </div>
 
         <!-- Large Banner -->
         <div class="mb-16 rounded-xl overflow-hidden shadow-lg">
-            @if(file_exists(public_path('images/about/banner.jpg')))
+            @if(!empty($aboutBanner))
+                <img src="{{ asset('storage/' . $aboutBanner) }}" alt="ALOMDA Banner" class="w-full h-[400px] md:h-[500px] object-cover">
+            @elseif(file_exists(public_path('images/about/banner.jpg')))
                 <img src="{{ asset('images/about/banner.jpg') }}" alt="ALOMDA Banner" class="w-full h-[400px] md:h-[500px] object-cover">
             @elseif(file_exists(public_path('images/about/banner.png')))
                 <img src="{{ asset('images/about/banner.png') }}" alt="ALOMDA Banner" class="w-full h-[400px] md:h-[500px] object-cover">
@@ -21,7 +23,7 @@
                 <img src="{{ asset('images/about/banner.webp') }}" alt="ALOMDA Banner" class="w-full h-[400px] md:h-[500px] object-cover">
             @else
                 <div class="w-full h-[400px] md:h-[500px] bg-gradient-to-r from-gold-600 to-gold-800 flex items-center justify-center">
-                    <p class="text-white text-lg">Place banner image at: <strong>public/images/about/banner.jpg</strong></p>
+                    <p class="text-white text-lg">{{ __('Place banner image at') }}: <strong>public/images/about/banner.jpg</strong></p>
                 </div>
             @endif
         </div>
@@ -44,12 +46,12 @@
                     @endif
                 </div>
                 <div class="p-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">About ALOMDA</h2>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">{{ __('About ALOMDA') }}</h2>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        ALOMDA is a specialized supplier of professional tools and equipment dedicated to jewelers, goldsmiths, and precious metal artisans. Our mission is simple: to provide reliable, precise, and durable tools that facilitate daily work and guarantee high-quality results.
+                        {{ __('About paragraph 1') }}
                     </p>
                     <p class="text-gray-600 leading-relaxed">
-                        We believe that the quality of a piece of jewelry begins with the quality of the tool. That's why ALOMDA selects and offers solutions adapted to the real requirements of workshops, from beginners to confirmed professionals.
+                        {{ __('About paragraph 2') }}
                     </p>
                 </div>
             </div>
@@ -57,7 +59,9 @@
             <!-- Mission Section -->
             <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
                 <div class="h-64 overflow-hidden">
-                    @if(file_exists(public_path('images/about/image2.jpg')))
+                    @if(!empty($aboutImage2))
+                        <img src="{{ asset('storage/' . $aboutImage2) }}" alt="Our Vision" class="w-full h-full object-cover">
+                    @elseif(file_exists(public_path('images/about/image2.jpg')))
                         <img src="{{ asset('images/about/image2.jpg') }}" alt="Our Vision" class="w-full h-full object-cover">
                     @elseif(file_exists(public_path('images/about/image2.png')))
                         <img src="{{ asset('images/about/image2.png') }}" alt="Our Vision" class="w-full h-full object-cover">
@@ -65,17 +69,17 @@
                         <img src="{{ asset('images/about/image2.webp') }}" alt="Our Vision" class="w-full h-full object-cover">
                     @else
                         <div class="w-full h-full bg-gold-100 flex items-center justify-center">
-                            <p class="text-gray-500 text-sm text-center px-4">Place image at: <strong>public/images/about/image2.jpg</strong></p>
+                            <p class="text-gray-500 text-sm text-center px-4">{{ __('Place image at') }}: <strong>public/images/about/image2.jpg</strong></p>
                         </div>
                     @endif
                 </div>
                 <div class="p-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h2>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">{{ __('Our Vision') }}</h2>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        We believe that the quality of a piece of jewelry begins with the quality of the tool. That's why ALOMDA selects and offers solutions adapted to the real requirements of workshops, from beginners to confirmed professionals.
+                        {{ __('Vision paragraph 1') }}
                     </p>
                     <p class="text-gray-600 leading-relaxed">
-                        By choosing ALOMDA, you're investing in professional-grade tools that enhance your craftsmanship and ensure exceptional results in every project.
+                        {{ __('Vision paragraph 2') }}
                     </p>
                 </div>
             </div>
@@ -83,7 +87,7 @@
 
         <!-- What We Offer -->
         <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100 mb-12">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">What We Offer</h2>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">{{ __('What We Offer') }}</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="text-center">
                     <div class="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -91,8 +95,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                         </svg>
                     </div>
-                    <h3 class="font-bold text-gray-900 mb-2">Jewelry Making & Repair Tools</h3>
-                    <p class="text-sm text-gray-600">Professional tools for creating and repairing jewelry with precision and quality.</p>
+                    <h3 class="font-bold text-gray-900 mb-2">{{ __('Jewelry Making & Repair Tools') }}</h3>
+                    <p class="text-sm text-gray-600">{{ __('Jewelry tools desc') }}</p>
                 </div>
 
                 <div class="text-center">
@@ -101,8 +105,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232 1.232 3.228 0 4.46s-3.228 1.232-4.46 0l-1.403-1.402m-4.24-4.24 1.403 1.403c1.232 1.232 3.228 1.232 4.46 0s1.232-3.228 0-4.46l-1.402-1.403m-4.24 4.24-1.403-1.402c-1.232-1.232-1.232-3.228 0-4.46s3.228-1.232 4.46 0l1.403 1.402m-4.24 4.24-1.403-1.402" />
                         </svg>
                     </div>
-                    <h3 class="font-bold text-gray-900 mb-2">Precision Workshop Equipment</h3>
-                    <p class="text-sm text-gray-600">High-precision equipment designed for professional workshops and studios.</p>
+                    <h3 class="font-bold text-gray-900 mb-2">{{ __('Precision Workshop Equipment') }}</h3>
+                    <p class="text-sm text-gray-600">{{ __('Precision equipment desc') }}</p>
                 </div>
 
                 <div class="text-center">
@@ -111,15 +115,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655-5.653a2.548 2.548 0 0 0-3.586 0l-1.837 1.84a2.548 2.548 0 0 0 0 3.586l5.877 5.877M11.42 15.17l-3.03 2.496a2.548 2.548 0 0 1-3.586 0l-1.837-1.84a2.548 2.548 0 0 1 0-3.586l5.877-5.877" />
                         </svg>
                     </div>
-                    <h3 class="font-bold text-gray-900 mb-2">Selected Accessories</h3>
-                    <p class="text-sm text-gray-600">Carefully selected accessories chosen for their performance and longevity.</p>
+                    <h3 class="font-bold text-gray-900 mb-2">{{ __('Selected Accessories') }}</h3>
+                    <p class="text-sm text-gray-600">{{ __('Selected accessories desc') }}</p>
                 </div>
             </div>
         </div>
 
         <!-- Why Choose Us -->
         <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100 mb-12">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Why Choose ALOMDA?</h2>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">{{ __('Why Choose ALOMDA?') }}</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="flex items-start gap-4">
                     <div class="w-12 h-12 bg-gold-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -128,8 +132,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-900 mb-1">Professional Quality</h3>
-                        <p class="text-sm text-gray-600">Tested and approved professional quality tools that meet industry standards.</p>
+                        <h3 class="font-bold text-gray-900 mb-1">{{ __('Professional Quality') }}</h3>
+                        <p class="text-sm text-gray-600">{{ __('Professional Quality desc') }}</p>
                     </div>
                 </div>
 
@@ -140,8 +144,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-900 mb-1">Fair & Transparent Prices</h3>
-                        <p class="text-sm text-gray-600">Competitive pricing with complete transparency - no hidden costs.</p>
+                        <h3 class="font-bold text-gray-900 mb-1">{{ __('Fair & Transparent Prices') }}</h3>
+                        <p class="text-sm text-gray-600">{{ __('Fair Prices desc') }}</p>
                     </div>
                 </div>
 
@@ -152,8 +156,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-900 mb-1">Responsive Customer Service</h3>
-                        <p class="text-sm text-gray-600">Attentive and responsive customer support ready to assist you.</p>
+                        <h3 class="font-bold text-gray-900 mb-1">{{ __('Responsive Customer Service') }}</h3>
+                        <p class="text-sm text-gray-600">{{ __('Customer Service desc') }}</p>
                     </div>
                 </div>
 
@@ -164,8 +168,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-900 mb-1">Fast Delivery & Careful Packaging</h3>
-                        <p class="text-sm text-gray-600">Quick delivery with careful packaging to ensure your tools arrive safely.</p>
+                        <h3 class="font-bold text-gray-900 mb-1">{{ __('Fast Delivery & Careful Packaging') }}</h3>
+                        <p class="text-sm text-gray-600">{{ __('Fast Delivery desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -173,12 +177,12 @@
 
         <!-- CTA Section -->
         <div class="bg-gold-600 rounded-xl shadow-lg p-8 text-center text-white">
-            <h2 class="text-2xl font-bold mb-4">Explore Our Professional Tools</h2>
+            <h2 class="text-2xl font-bold mb-4">{{ __('Explore Our Professional Tools') }}</h2>
             <p class="text-gold-50 mb-6 max-w-2xl mx-auto">
-                Discover our comprehensive collection of professional jewelry tools and equipment designed for artisans and professionals.
+                {{ __('Explore CTA paragraph') }}
             </p>
             <a href="{{ route('shop') }}" class="inline-block bg-white text-gold-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors">
-                Shop Now
+                {{ __('Shop Now') }}
             </a>
         </div>
     </div>

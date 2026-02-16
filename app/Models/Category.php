@@ -15,6 +15,7 @@ class Category extends Model
         'icon',
         'name_ar',
         'name_en',
+        'name_fr',
         'slug',
         'image',
     ];
@@ -36,5 +37,13 @@ class Category extends Model
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function getTranslatedNameAttribute(): string
+    {
+        $locale = app()->getLocale();
+        if ($locale === 'ar' && $this->name_ar) return $this->name_ar;
+        if ($locale === 'fr' && $this->name_fr) return $this->name_fr;
+        return $this->name_fr ?: $this->name_en ?: $this->name_ar ?: '';
     }
 }

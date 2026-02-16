@@ -23,14 +23,14 @@
         </svg>
     </div>
     <h2 class="text-2xl font-bold text-gray-900 mb-2">
-        {{ $title ?? 'No items found' }}
+        {{ $title ?? __('No products found') }}
     </h2>
     <p class="text-gray-500 mb-8">
-        {{ $message ?? 'No items to display here.' }}
+        {{ $message ?? __('Try changing your search options.') }}
     </p>
     @if($actionRoute)
         <a href="{{ $actionRoute }}" class="inline-block bg-gold-600 text-white px-8 py-3 rounded-full font-bold hover:bg-gold-700 transition-colors">
-            {{ $actionText ?? 'Browse Shop' }}
+            {{ $actionText ?? __('Browse Shop') }}
         </a>
     @endif
 </div>

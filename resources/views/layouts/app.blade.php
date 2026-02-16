@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'ALOMDA') }}</title>
+
+    {{-- Favicon / site icon --}}
+    @if(file_exists(public_path('favicon.ico')))
+        <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="32x32" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    @elseif(file_exists(public_path('images/Logo.png')))
+        <link rel="icon" type="image/png" href="{{ asset('images/Logo.png') }}">
+        <link rel="apple-touch-icon" href="{{ asset('images/Logo.png') }}">
+    @elseif(file_exists(public_path('build/assets/Logo.png')))
+        <link rel="icon" type="image/png" href="{{ asset('build/assets/Logo.png') }}">
+        <link rel="apple-touch-icon" href="{{ asset('build/assets/Logo.png') }}">
+    @endif
 
     @include('components.head-assets')
 

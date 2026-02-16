@@ -5,45 +5,45 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Contact Us</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ __('Contact Us') }}</h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                We'd love to hear from you. Get in touch with us and we'll respond as soon as possible.
+                {{ __('Contact intro') }}
             </p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Contact Form -->
             <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ __('Send us a Message') }}</h2>
                 <form action="#" method="POST" class="space-y-6">
                     @csrf
                     <div>
-                        <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Name</label>
+                        <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">{{ __('Name') }}</label>
                         <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-500 focus:border-gold-500 outline-none transition-all">
                     </div>
 
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">{{ __('Email') }}</label>
                         <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-500 focus:border-gold-500 outline-none transition-all">
                     </div>
 
                     <div>
-                        <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone</label>
+                        <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">{{ __('Phone') }}</label>
                         <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-500 focus:border-gold-500 outline-none transition-all">
                     </div>
 
                     <div>
-                        <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
+                        <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">{{ __('Subject') }}</label>
                         <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-500 focus:border-gold-500 outline-none transition-all">
                     </div>
 
                     <div>
-                        <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                        <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">{{ __('Message') }}</label>
                         <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold-500 focus:border-gold-500 outline-none transition-all resize-none"></textarea>
                     </div>
 
                     <button type="submit" class="w-full bg-gold-600 text-white py-3 rounded-lg font-bold hover:bg-gold-700 transition-colors shadow-md">
-                        Send Message
+                        {{ __('Send Message') }}
                     </button>
                 </form>
             </div>
@@ -61,10 +61,10 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-900 mb-1">Phone</h3>
-                                <p class="text-gray-600">+212 666 732 836</p>
-                                <p class="text-gray-600">+212 666 151 353</p>
-                                <p class="text-gray-600">+212 661 283 061</p>
+                                <h3 class="font-bold text-gray-900 mb-1">{{ __('Phone') }}</h3>
+                                <p class="text-gray-600" dir="ltr">+212 666 732 836</p>
+                                <p class="text-gray-600" dir="ltr">+212 666 151 353</p>
+                                <p class="text-gray-600" dir="ltr">+212 661 283 061</p>
                             </div>
                         </div>
 
@@ -75,7 +75,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-900 mb-1">Email</h3>
+                                <h3 class="font-bold text-gray-900 mb-1">{{ __('Email') }}</h3>
                                 <p class="text-gray-600">Contact@alomda.ma</p>
                             </div>
                         </div>
@@ -98,19 +98,19 @@
 
                 <!-- Business Hours -->
                 <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Business Hours</h2>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ __('Business Hours') }}</h2>
                     <div class="space-y-3">
                         <div class="flex justify-between">
-                            <span class="text-gray-600">Monday - Friday</span>
+                            <span class="text-gray-600">{{ __('Monday - Friday') }}</span>
                             <span class="font-semibold text-gray-900">9:00 AM - 6:00 PM</span>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-gray-600">Saturday</span>
+                            <span class="text-gray-600">{{ __('Saturday') }}</span>
                             <span class="font-semibold text-gray-900">10:00 AM - 4:00 PM</span>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-gray-600">Sunday</span>
-                            <span class="font-semibold text-gray-900">Closed</span>
+                            <span class="text-gray-600">{{ __('Sunday') }}</span>
+                            <span class="font-semibold text-gray-900">{{ __('Closed') }}</span>
                         </div>
                     </div>
                 </div>

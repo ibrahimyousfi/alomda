@@ -22,7 +22,7 @@ use App\Http\Controllers\ShopController;
 
 // Public Routes
 Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['ar', 'en'])) {
+    if (in_array($locale, ['ar', 'fr'])) {
         session()->put('locale', $locale);
     }
     return back();
@@ -78,4 +78,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
     Route::patch('orders/{order}', [OrderController::class, 'updateStatus'])->name('orders.update');
+
+    Route::get('settings', [\App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings.index');
+    Route::post('settings', [\App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('settings.update');
+    Route::post('settings/delete-about-image', [\App\Http\Controllers\Admin\SettingsController::class, 'deleteAboutImage'])->name('settings.delete-about-image');
+    Route::post('partners', [\App\Http\Controllers\Admin\SettingsController::class, 'partnerStore'])->name('partners.store');
+    Route::delete('partners/{partner}', [\App\Http\Controllers\Admin\SettingsController::class, 'partnerDestroy'])->name('partners.destroy');
 });

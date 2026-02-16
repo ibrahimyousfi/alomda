@@ -4,6 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ __('Admin Login') }} - ALOMDA</title>
+    @if(file_exists(public_path('favicon.ico')))
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    @elseif(file_exists(public_path('images/Logo.png')))
+        <link rel="icon" type="image/png" href="{{ asset('images/Logo.png') }}">
+    @elseif(file_exists(public_path('build/assets/Logo.png')))
+        <link rel="icon" type="image/png" href="{{ asset('build/assets/Logo.png') }}">
+    @endif
     @include('components.head-assets')
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>body { font-family: 'Cairo', sans-serif; }</style>
@@ -18,7 +25,7 @@
             @else
                 <h1 class="text-3xl font-bold text-gray-900 mb-4">ALOMDA</h1>
             @endif
-            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Tabak<span class="text-gold-600">Store</span></h1>
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">ALOMDA</h1>
             <p class="text-gray-500 text-sm mt-2 font-medium">Admin Dashboard</p>
         </div>
 

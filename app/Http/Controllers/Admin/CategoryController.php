@@ -31,6 +31,7 @@ class CategoryController extends Controller
             'icon' => 'nullable|string|max:255',
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'name_fr' => 'nullable|string|max:255',
             'image' => 'nullable|image|max:2048',
         ]);
 
@@ -68,6 +69,7 @@ class CategoryController extends Controller
             'icon' => 'nullable|string|max:255',
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'name_fr' => 'nullable|string|max:255',
             'image' => 'nullable|image|max:2048',
         ]);
 

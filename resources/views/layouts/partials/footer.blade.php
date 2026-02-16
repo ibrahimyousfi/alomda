@@ -6,21 +6,21 @@
                 <img src="{{ asset('build/assets/Logo.png') }}" alt="ALOMDA" class="h-12 w-auto mb-4 mx-auto md:mx-0 footer-logo-img" style="display: block; max-height: 3rem; width: auto; object-fit: contain;" onerror="this.style.display='none'; var s=this.nextElementSibling; if(s) s.style.display='block';">
                 <h2 class="text-2xl font-bold text-white mb-4 footer-logo-fallback mx-auto md:mx-0" style="display: none;">ALOMDA</h2>
                 <p class="text-gray-400 text-sm leading-relaxed">
-                    ALOMDA is a specialized supplier of professional tools and equipment for jewelers and artisans, offering reliable, precise, and durable solutions for high-quality work.
+                    {{ __('Footer about') }}
                 </p>
             </div>
             <div>
-                <h4 class="text-lg font-semibold mb-4 text-gray-200">Quick Links</h4>
+                <h4 class="text-lg font-semibold mb-4 text-gray-200">{{ __('Quick Links') }}</h4>
                 <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="{{ route('home') }}" class="hover:text-gray-200 transition-colors">Home</a></li>
-                    <li><a href="{{ route('shop') }}" class="hover:text-gray-200 transition-colors">Shop</a></li>
-                    <li><a href="{{ route('about') }}" class="hover:text-gray-200 transition-colors">About Us</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-gray-200 transition-colors">Contact</a></li>
-                    <li><a href="{{ route('faq') }}" class="hover:text-gray-200 transition-colors">FAQ</a></li>
+                    <li><a href="{{ route('home') }}" class="hover:text-gray-200 transition-colors">{{ __('Home') }}</a></li>
+                    <li><a href="{{ route('shop') }}" class="hover:text-gray-200 transition-colors">{{ __('Shop') }}</a></li>
+                    <li><a href="{{ route('about') }}" class="hover:text-gray-200 transition-colors">{{ __('About Us') }}</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-gray-200 transition-colors">{{ __('Contact') }}</a></li>
+                    <li><a href="{{ route('faq') }}" class="hover:text-gray-200 transition-colors">{{ __('FAQ') }}</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-lg font-semibold mb-4 text-gray-200">Contact Us</h4>
+                <h4 class="text-lg font-semibold mb-4 text-gray-200">{{ __('Contact Us') }}</h4>
                 <ul class="space-y-2 text-gray-400 text-sm flex flex-col items-center md:items-start">
                     <li class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-400">
@@ -32,21 +32,21 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-400">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
                         </svg>
-                        +212 661 623 517
+                        <span dir="ltr">+212 661 623 517</span>
                     </li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-lg font-semibold mb-4 text-gray-200">Newsletter</h4>
+                <h4 class="text-lg font-semibold mb-4 text-gray-200">{{ __('Newsletter') }}</h4>
                 <div class="flex mb-6">
-                    <input type="email" placeholder="Email Address" class="bg-gray-800 text-white px-4 py-2 rounded-l-md w-full focus:outline-none focus:ring-1 focus:ring-gold-500 border-none text-sm">
+                    <input type="email" placeholder="{{ __('Email Address') }}" class="bg-gray-800 text-white px-4 py-2 rounded-l-md w-full focus:outline-none focus:ring-1 focus:ring-gold-500 border-none text-sm">
                     <button class="bg-gold-600 hover:bg-gold-700 px-4 py-2 rounded-r-md transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
                         </svg>
                     </button>
                 </div>
-                <h4 class="text-lg font-semibold mb-4 text-gray-200">Follow Us</h4>
+                <h4 class="text-lg font-semibold mb-4 text-gray-200">{{ __('Follow Us') }}</h4>
                 <div class="flex items-center gap-3 justify-center md:justify-start">
                     <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-gold-600 rounded-full transition-colors group">
                         <svg class="w-5 h-5 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; {{ date('Y') }} ALOMDA. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} ALOMDA. {{ __('All rights reserved') }}.</p>
         </div>
     </div>
 </footer>

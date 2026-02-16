@@ -1,0 +1,27 @@
+cd /home/swissleg/alomdatools.ma
+
+pwd
+
+php -v
+
+ls -la
+
+ls -la .env
+
+ls -la vendor
+
+ls -la storage
+
+ls -la bootstrap/cache
+
+chmod -R 755 storage bootstrap/cache
+
+chmod 644 .env
+
+php artisan --version
+
+php artisan config:clear
+
+php artisan config:cache
+
+tail -100 storage/logs/laravel.log
